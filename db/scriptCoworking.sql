@@ -76,3 +76,6 @@ create table Reserva(
     foreign key (idUsuario) references Usuario(idUsuario),
     foreign key (idEspacio) references Espacio(idEspacio)
 );
+select * from Reserva; 
+select * from Espacio;
+select * from Usuario;

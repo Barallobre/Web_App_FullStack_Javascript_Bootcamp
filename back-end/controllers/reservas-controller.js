@@ -1,19 +1,18 @@
-'use strict';
-const Joi = require('joi');
-const sengrid = require('@sendgrid/mail');
+"use strict";
+const Joi = require("joi");
+const sengrid = require("@sendgrid/mail");
 const {
   reservasRepository,
   espaciosRepository,
-  usersRepository
-}= require('../repositories');
+  usersRepository,
+} = require("../repositories");
 //------------------------Función para añadir una reserva nueva por parte del usuario--------------------
-async function addReserva(req,res){
-
+async function addReserva(req, res) {
   try {
-    const  IdEspacio  = req.params.IdEspacio;
+    const IdEspacio = req.params.IdEspacio;
     const IdUser = req.auth.id;
-    console.log(req.auth)
-    const {fechaInicio,fechaFin} = req.body;
+
+    const { fechaInicio, fechaFin } = req.body;
 
     const schema = Joi.object({
       IdUser: Joi.number().positive(),
@@ -22,30 +21,40 @@ async function addReserva(req,res){
       fechaFin: Joi.date(),
     });
 
-    await schema.validateAsync({IdEspacio,IdUser,fechaInicio,fechaFin});
+    await schema.validateAsync({ IdEspacio, IdUser, fechaInicio, fechaFin });
 
     const espacio = await espaciosRepository.getEspacioById(IdEspacio);
-    if(!espacio){
-      throw new Error('Ese espacio no existe');
+    if (!espacio) {
+      throw new Error("Ese espacio no existe");
     }
     const Pagado = true;
-    const reserva = await reservasRepository.createReserva(IdEspacio,IdUser,fechaInicio,fechaFin,Pagado);
-      //una vez registrado, mandamos un correo de confirmación
-      sengrid.setApiKey(process.env.SENDGRID_KEY);
-      const data = {
-        from: process.env.SENDGRID_MAIL_FROM,
-        to: req.auth.email,
-        subject: 'Reserva hecha.',
-        text: `<h1>Felicidades.</h1>\nHas reservado con éxito en uno de nuestros espacios de coworking entre el ${fechaInicio} y el ${fechaFin}.`,
-        html: `<h1>Felicidades.</h1>\nHas reservado con éxito en uno de nuestros espacios de coworking entre el ${fechaInicio} y el ${fechaFin}.`
-      };
-      await sengrid.send(data);
+    await reservasRepository.createReserva(
+      IdEspacio,
+      IdUser,
+      fechaInicio,
+      fechaFin,
+      Pagado
+    );
+    //una vez registrado, mandamos un correo de confirmación
+    sengrid.setApiKey(process.env.SENDGRID_KEY);
+    const data = {
+      from: process.env.SENDGRID_MAIL_FROM,
+      to: req.auth.email,
+      subject: "Reserva hecha.",
+      text: `Felicidades.\nHas reservado con éxito en uno de nuestros espacios de coworking entre el ${fechaInicio} y el ${fechaFin}.`,
+      html: `<h1>Felicidades.</h1>\nHas reservado con éxito en uno de nuestros espacios de coworking entre el ${fechaInicio} y el ${fechaFin}.`,
+    };
+    await sengrid.send(data);
 
-    return res.send(reserva);
-
+    return res.send({
+      IdEspacio,
+      IdUser,
+      fechaInicio,
+      fechaFin,
+    });
   } catch (err) {
     console.log(err);
-    if(err.name === 'ValidationError'){
+    if (err.name === "ValidationError") {
       err.status = 400;
     }
     res.status(err.status || 500);
@@ -53,81 +62,83 @@ async function addReserva(req,res){
   }
 }
 
-
 //-----------------------Búsqueda de espacios a partir del formulario del index--------------------
-async function getBusqueda(req,res){
-  const {localidad,tipoEspacio,fechaInicio,fechaFin} = req.body;
+async function getBusqueda(req, res) {
+  const { localidad, tipoEspacio, fechaInicio, fechaFin } = req.body;
 
-    const schema = Joi.object({
-      localidad: Joi.string().required(),
-      tipoEspacio: Joi.string().required(),
-      fechaInicio: Joi.date().required(),
-      fechaFin: Joi.date().required(),
-    });
+  const schema = Joi.object({
+    localidad: Joi.string().required(),
+    tipoEspacio: Joi.string().required(),
+    fechaInicio: Joi.date().required(),
+    fechaFin: Joi.date().required(),
+  });
 
-    await schema.validateAsync({localidad,tipoEspacio,fechaInicio,fechaFin});
-    
-    const busqueda = await reservasRepository.getBusqueda(localidad,tipoEspacio,fechaInicio,fechaFin);
+  await schema.validateAsync({ localidad, tipoEspacio, fechaInicio, fechaFin });
 
-    res.send(busqueda);
+  const busqueda = await reservasRepository.getBusqueda(
+    localidad,
+    tipoEspacio,
+    fechaInicio,
+    fechaFin
+  );
+
+  res.send(busqueda);
 }
 //--------------------------Listado de las reservas hechas por un usuario--------------------
-async function getReservas(req,res){
-  
-  try{
-    const { IdUser }= req.params;  
+async function getReservas(req, res) {
+  try {
+    const { IdUser } = req.params;
     //comprobación de si el usuario validado es el mismo que ha hecho la reserva
-    if(+(IdUser) !== +(req.auth.id)){
+    console.log(req.auth.id, req.params);
+    if (+IdUser !== +req.auth.id) {
       throw new Error(`Forbidden.403`);
     }
-    
-    const schema = Joi.object({
-      IdUser: Joi.number().positive().required()
-    });
-    await schema.validateAsync({IdUser});
 
+    const schema = Joi.object({
+      IdUser: Joi.number().positive().required(),
+    });
+    await schema.validateAsync({ IdUser });
 
     const user = await usersRepository.getUserById(IdUser);
-    if(!user){
-        throw new Error('Este usuario no existe.');
-      }
+    if (!user) {
+      throw new Error("Este usuario no existe.");
+    }
 
     const reservas = await reservasRepository.getReservas(IdUser);
 
     return res.send(reservas);
-}catch(err){
-    if(err.nombre === 'ValidationError'){
-        err.status = 400;
+  } catch (err) {
+    if (err.nombre === "ValidationError") {
+      err.status = 400;
     }
     console.log(err);
-    res.status(err.status||500);
-    res.send({error: err});
+    res.status(err.status || 500);
+    res.send({ error: err });
   }
 }
 //----------------------Cancelación de reserva por parte de un usuario----------------
-async function deleteReserva(req,res){
-  try {    
-      
-    const  IdReserva  = req.params.IdReserva;
+async function deleteReserva(req, res) {
+  try {
+    const IdReserva = req.params.IdReserva;
     const IdUserReserva = await reservasRepository.getIdUserReserva(IdReserva);
     //comprobación de si el usuario validado es el mismo que ha hecho la reserva
-    if(+(IdUserReserva) !== +(req.auth.id)){
+    if (+IdUserReserva !== +req.auth.id) {
       throw new Error(`Forbidden.403`);
     }
     const schema = Joi.number().positive().required();
     await schema.validateAsync(IdReserva);
 
     const review = await reservasRepository.getReservaById(IdReserva);
-    if(!review){
-      throw new Error('Reserva no existe');
+    if (!review) {
+      throw new Error("Reserva no existe");
     }
 
     await reservasRepository.deleteReserva(IdReserva);
 
-    res.send({message: 'Reserva borrada' });
+    res.send({ message: "Reserva borrada" });
   } catch (err) {
     console.log(err);
-    if(err.name === 'ValidationError'){
+    if (err.name === "ValidationError") {
       err.status = 400;
     }
     res.status(err.status || 500);
@@ -135,9 +146,9 @@ async function deleteReserva(req,res){
   }
 }
 //---------------------Exportación de funciones al index---------------------------
-module.exports={
-    addReserva,
-    getBusqueda,
-    getReservas,
-    deleteReserva,
+module.exports = {
+  addReserva,
+  getBusqueda,
+  getReservas,
+  deleteReserva,
 };
