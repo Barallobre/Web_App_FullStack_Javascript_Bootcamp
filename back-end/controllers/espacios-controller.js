@@ -76,6 +76,8 @@ async function deleteEspacio(req, res) {
       throw new Error("Este espacio no existe.");
     }
     await espaciosRepository.deleteEquipamientoEspacio(IdEspacio);
+    await espaciosRepository.deleteIncidenciaEspacio(IdEspacio);
+    await espaciosRepository.deleteReservaEspacio(IdEspacio);
     await espaciosRepository.deleteEspacio(IdEspacio);
 
     res.send({ message: "Espacio borrado" });
@@ -122,26 +124,26 @@ async function addEspacio(req, res) {
       fechaFinDisp,
       costeDia,
     });
-
+    let imagen;
     let picture = undefined;
     let nombreImagen = nombre.replace(/ /g, "");
-
+    let myImage;
     if (req.files !== null && req.files.picture) {
-      let imagen = req.files.picture;
+      imagen = req.files.picture;
 
       let myImage = "fotoEspacio" + nombreImagen;
 
       try {
         const i = await Jimp.read(imagen.data);
-        i.resize(125, 150);
-        await i.write(__dirname + "/../files/users/" + myImage + ".png");
+        i.resize(300, 200);
+        await i.write(__dirname + "/../files/espacios/" + myImage + ".png");
       } catch {
         const error = new Error("Error procesando imagen. ");
         error.code = 401;
         throw error;
       }
+      picture = myImage + ".png";
     }
-    picture = myImage + ".png";
 
     await espaciosRepository.addEspacio(
       nombre,
@@ -254,7 +256,7 @@ async function updateEspacio(req, res) {
 
       try {
         const i = await Jimp.read(imagen.data);
-        i.resize(125, 150);
+        i.resize(300, 200);
         await i.write(__dirname + "/../files/espacios/" + myImage + ".png");
       } catch {
         const error = new Error("Error procesando imagen. ");

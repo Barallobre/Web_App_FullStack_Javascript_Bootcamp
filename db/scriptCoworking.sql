@@ -79,3 +79,5 @@ create table Reserva(
 select * from Reserva; 
 select * from Espacio;
 select * from Usuario;
+select * from Incidencia;
+select * from EquipamientoEspacio;

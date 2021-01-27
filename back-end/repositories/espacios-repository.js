@@ -20,6 +20,16 @@ async function deleteEquipamientoEspacio(id) {
   const query = "DELETE FROM EquipamientoEspacio WHERE IdEspacio = ?";
   await pool.query(query, id);
 }
+async function deleteReservaEspacio(id) {
+  const pool = await database.getPool();
+  const query = "DELETE FROM Reserva WHERE IdEspacio = ?";
+  await pool.query(query, id);
+}
+async function deleteIncidenciaEspacio(id) {
+  const pool = await database.getPool();
+  const query = "DELETE FROM Incidencia WHERE IdEspacio = ?";
+  await pool.query(query, id);
+}
 async function deleteEspacio(id) {
   const pool = await database.getPool();
   const query = "DELETE FROM Espacio WHERE IdEspacio = ?";
@@ -152,4 +162,6 @@ module.exports = {
   addEspacio,
   buscarIdEspacio,
   deleteEquipamientoEspacio,
+  deleteIncidenciaEspacio,
+  deleteReservaEspacio,
 };
