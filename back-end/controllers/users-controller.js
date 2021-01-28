@@ -48,17 +48,7 @@ async function register(req, res) {
     };
     await sengrid.send(data);*/
 
-       //generar el jwt
-       const tokenPayload = {
-        id: user.IdUsuario,
-        email: user.Email,
-        admin: user.Administrador,
-      };
-      const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, {
-        expiresIn: "30d",
-      });
-  
-      res.send({ token });
+    return res.send({ registro: 'éxito',IdNuevoUser:id });
   } catch (err) {
     if (err.name === "ValidationError") {
       err.status = 400;
