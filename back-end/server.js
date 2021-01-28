@@ -5,6 +5,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 const morgan = require("morgan");
+const cors = require('cors');
 const fs = require("fs");
 
 const { SERVER_PORT } = process.env;
@@ -22,6 +23,9 @@ app.use(fileUpload());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan("combined", { immediate: true, stream: accessLogStream }));
+
+app.use(cors());
+
 
 // Configuración de las rutas
 
