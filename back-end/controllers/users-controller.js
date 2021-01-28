@@ -38,7 +38,7 @@ async function register(req, res) {
       administrador
     );
     //una vez registrado, mandamos un correo de confirmación
-    sengrid.setApiKey(process.env.SENDGRID_KEY);
+   /* sengrid.setApiKey(process.env.SENDGRID_KEY);
     const data = {
       from: process.env.SENDGRID_MAIL_FROM,
       to: email,
@@ -46,9 +46,19 @@ async function register(req, res) {
       text: `<h1>Bienvenido.</h1>\nTe has registrado correctamente en nuestra web de gestión de coworking.`,
       html: `<h1>Bienvenido.</h1>\nTe has registrado correctamente en nuestra web de gestión de coworking.`,
     };
-    await sengrid.send(data);
+    await sengrid.send(data);*/
 
-    return res.send({ userId: id });
+       //generar el jwt
+       const tokenPayload = {
+        id: user.IdUsuario,
+        email: user.Email,
+        admin: user.Administrador,
+      };
+      const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, {
+        expiresIn: "30d",
+      });
+  
+      res.send({ token });
   } catch (err) {
     if (err.name === "ValidationError") {
       err.status = 400;
