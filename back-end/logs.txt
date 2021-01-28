@@ -131,3 +131,6 @@
 ::1 - - [27/Jan/2021:22:45:30 +0000] "POST /busqueda/9/reservar HTTP/1.1" - - "-" "PostmanRuntime/7.26.8"
 ::1 - - [27/Jan/2021:22:45:37 +0000] "DELETE /user/cancelar/4 HTTP/1.1" - - "-" "PostmanRuntime/7.26.8"
 ::1 - - [27/Jan/2021:22:46:33 +0000] "DELETE /user/cancelar/20 HTTP/1.1" - - "-" "PostmanRuntime/7.26.8"
+::ffff:192.168.0.52 - - [28/Jan/2021:08:01:06 +0000] "GET / HTTP/1.1" - - "-" "-"
+::ffff:192.168.0.52 - - [28/Jan/2021:08:01:07 +0000] "GET /HNAP1/ HTTP/1.1" - - "-" "-"
+::1 - - [28/Jan/2021:08:35:01 +0000] "POST /login HTTP/1.1" - - "-" "PostmanRuntime/7.26.10"
