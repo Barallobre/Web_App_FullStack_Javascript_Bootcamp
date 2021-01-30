@@ -241,7 +241,7 @@ async function updateEspacio(req, res) {
       throw new Error("Ese espacio no existe");
     }
     let nombreImagen;
-    let picture;
+
     if (nombre === undefined) {
       nombre = espacio.Nombre;
       nombreImagen = nombre.replace(/ /g, "");
@@ -264,7 +264,7 @@ async function updateEspacio(req, res) {
         throw error;
       }
     }
-    picture = myImage + ".png";
+    let picture = myImage + ".png";
 
     await espaciosRepository.updateEspacio(
       nombre,
