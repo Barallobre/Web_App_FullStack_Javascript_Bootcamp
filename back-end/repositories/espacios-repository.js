@@ -5,7 +5,7 @@ const database = require("../infrastructure/database");
 async function listEspacios() {
   const pool = await database.getPool();
   const query =
-    'select Espacio.IdEspacio,Espacio.Nombre, TipoEspacio.NombreTipo "Tipo de espacio" from Espacio join TipoEspacio on Espacio.idTipoEspacio = TipoEspacio.IdTipoEspacio';
+    'select Espacio.IdEspacio,Espacio.Nombre, TipoEspacio.NombreTipo "TipoEspacio" from Espacio join TipoEspacio on Espacio.idTipoEspacio = TipoEspacio.IdTipoEspacio';
   const [espacios] = await pool.query(query);
   return espacios;
 }

@@ -43,7 +43,7 @@ async function deleteReserva(id) {
 async function getReservas(id) {
   const pool = await database.getPool();
   const query =
-    'select Espacio.IdEspacio,Reserva.IdReserva,Espacio.Nombre, DATE_FORMAT(Reserva.FechaInicio, "%d/%m/%Y") as "Fecha Inicio",DATE_FORMAT(Reserva.FechaFin, "%d/%m/%Y") as "Fecha Fin" from Reserva inner join Espacio on Reserva.idEspacio = Espacio.IdEspacio where Reserva.idUsuario = ? ';
+    'select Espacio.IdEspacio,Reserva.IdReserva,Espacio.Nombre, DATE_FORMAT(Reserva.FechaInicio, "%d/%m/%Y") as "FechaInicio",DATE_FORMAT(Reserva.FechaFin, "%d/%m/%Y") as "FechaFin" from Reserva inner join Espacio on Reserva.idEspacio = Espacio.IdEspacio where Reserva.idUsuario = ? ';
   const [reservas] = await pool.query(query, id);
   return reservas;
 }
