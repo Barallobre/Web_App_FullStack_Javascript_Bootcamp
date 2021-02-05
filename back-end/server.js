@@ -5,7 +5,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 const morgan = require("morgan");
-const cors = require('cors');
+const cors = require("cors");
 const fs = require("fs");
 
 const { SERVER_PORT } = process.env;
@@ -25,7 +25,6 @@ app.use(bodyParser.json());
 app.use(morgan("combined", { immediate: true, stream: accessLogStream }));
 
 app.use(cors());
-
 
 // Configuración de las rutas
 
@@ -81,6 +80,8 @@ app.delete(
   validateAuth,
   reservasController.deleteReserva
 );
+//busqueda de materiales de un espacio
+app.post("/equipamiento", reservasController.getBusquedaEquipamiento);
 //middleware para las rutas que no existen
 app.use(function (req, res) {
   res.status(404).send("404 - Not found.");

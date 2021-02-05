@@ -6,6 +6,8 @@ async function getBusqueda(localidad, tipoEspacio, FechaInicio, FechaFin) {
   const pool = await database.getPool();
   const query =
     "SELECT IdEspacio,Nombre,Localidad,CosteDiario FROM Espacio WHERE Localidad = ?  AND idTipoEspacio = ?  and (FechaInicioDisponibilidad <= ? and FechaFinDisponibilidad >= ?)";
+  //"SELECT Espacio.IdEspacio,Espacio.Nombre,Espacio.Localidad,Espacio.CosteDiario,EquipamientoEspacio.IdTipoEquipamiento,EquipamientoEspacio.Cantidad FROM Espacio inner join EquipamientoEspacio on Espacio.IdEspacio = EquipamientoEspacio.IdEspacio WHERE Localidad = ?  AND idTipoEspacio = ?  and (FechaInicioDisponibilidad <= ? and FechaFinDisponibilidad >= ?)";
+  ("select tipoEquipamiento.TipoEquipamiento, EquipamientoEspacio.Cantidad from tipoEquipamiento inner join EquipamientoEspacio on EquipamientoEspacio.IdTipoEquipamiento = tipoEquipamiento.IdTipoEquipamiento where EquipamientoEspacio.IdEspacio = 10 ");
   const [espacios] = await pool.query(query, [
     localidad,
     tipoEspacio,
@@ -14,6 +16,14 @@ async function getBusqueda(localidad, tipoEspacio, FechaInicio, FechaFin) {
   ]);
   console.log(espacios);
   return espacios;
+}
+async function getEquipamiento(idEspacio) {
+  const pool = await database.getPool();
+  const query =
+    "select tipoEquipamiento.TipoEquipamiento, EquipamientoEspacio.Cantidad from tipoEquipamiento inner join EquipamientoEspacio on EquipamientoEspacio.IdTipoEquipamiento = tipoEquipamiento.IdTipoEquipamiento where EquipamientoEspacio.IdEspacio = ? ";
+  const [equipamiento] = await pool.query(query, [idEspacio]);
+  console.log(equipamiento);
+  return equipamiento;
 }
 async function createReserva(IdEspacio, IdUser, fechaInicio, fechaFin, pagado) {
   const pool = await database.getPool();
@@ -44,6 +54,7 @@ async function getReservas(id) {
   const pool = await database.getPool();
   const query =
     'select Espacio.IdEspacio,Reserva.IdReserva,Espacio.Nombre, DATE_FORMAT(Reserva.FechaInicio, "%d/%m/%Y") as "FechaInicio",DATE_FORMAT(Reserva.FechaFin, "%d/%m/%Y") as "FechaFin" from Reserva inner join Espacio on Reserva.idEspacio = Espacio.IdEspacio where Reserva.idUsuario = ? ';
+
   const [reservas] = await pool.query(query, id);
   return reservas;
 }
@@ -62,4 +73,5 @@ module.exports = {
   deleteReserva,
   getReservas,
   getIdUserReserva,
+  getEquipamiento,
 };

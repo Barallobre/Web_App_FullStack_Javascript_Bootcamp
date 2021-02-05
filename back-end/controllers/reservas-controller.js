@@ -84,6 +84,20 @@ async function getBusqueda(req, res) {
 
   res.send(busqueda);
 }
+//-----------------------Búsqueda de equipamiento de los espacios a partir del resultado de la búsqueda--------------------
+async function getBusquedaEquipamiento(req, res) {
+  const { IdEspacio } = req.body;
+
+  const schema = Joi.object({
+    IdEspacio: Joi.string().required(),
+  });
+
+  await schema.validateAsync({ IdEspacio });
+
+  const busqueda = await reservasRepository.getEquipamiento(IdEspacio);
+
+  res.send(busqueda);
+}
 //--------------------------Listado de las reservas hechas por un usuario--------------------
 async function getReservas(req, res) {
   try {
@@ -151,4 +165,5 @@ module.exports = {
   getBusqueda,
   getReservas,
   deleteReserva,
+  getBusquedaEquipamiento,
 };
