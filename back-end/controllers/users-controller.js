@@ -38,7 +38,7 @@ async function register(req, res) {
       administrador
     );
     //una vez registrado, mandamos un correo de confirmación
-   /* sengrid.setApiKey(process.env.SENDGRID_KEY);
+    /* sengrid.setApiKey(process.env.SENDGRID_KEY);
     const data = {
       from: process.env.SENDGRID_MAIL_FROM,
       to: email,
@@ -48,7 +48,7 @@ async function register(req, res) {
     };
     await sengrid.send(data);*/
 
-    return res.send({ registro: 'éxito',IdNuevoUser:id });
+    return res.send({ registro: "éxito", IdNuevoUser: id });
   } catch (err) {
     if (err.name === "ValidationError") {
       err.status = 400;
