@@ -137,6 +137,7 @@ async function updateEquipamiento(Cantidad, IdTipoEquipamiento, id) {
   return true;
 }
 async function insertEquipamiento(id, IdTipoEquipamiento, Cantidad) {
+  console.log(id, IdTipoEquipamiento, Cantidad);
   const pool = await database.getPool();
   const insertQuery = "INSERT INTO EquipamientoEspacio VALUES (?, ?, ?)";
   await pool.query(insertQuery, [id, IdTipoEquipamiento, Cantidad]);

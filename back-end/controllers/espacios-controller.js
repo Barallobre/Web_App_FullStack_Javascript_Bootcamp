@@ -11,6 +11,7 @@ let Jimp = require("jimp");
 const { espaciosRepository } = require("../repositories");
 
 async function agregarEquipo(IdEspacio, IdTipoEquipamiento, Cantidad) {
+  console.log(IdEspacio, IdTipoEquipamiento, Cantidad);
   await espaciosRepository.insertEquipamiento(
     IdEspacio,
     IdTipoEquipamiento,
@@ -160,33 +161,33 @@ async function addEspacio(req, res) {
       nombre,
       tipoEspacio
     );
+    console.log(IdEspacio);
     const espacio = await espaciosRepository.getEspacioById(IdEspacio);
     if (!espacio) {
       throw new Error("Ese espacio no existe");
     }
-    const { sillas, mesas, proyector, pantallaProyector, monitores } = req.body;
+    const { Sillas, Mesas, Proyector, Pantalla, Monitores } = req.body;
     //recorremos cada tipo de equipamiento y guardamos la cantidad que se nos indica en el formulario
     let Cantidad;
-    const equipamiento = [
-      sillas,
-      mesas,
-      proyector,
-      pantallaProyector,
-      monitores,
-    ];
+    console.log("body");
+    console.log(req.body);
+    const equipamiento = [Sillas, Mesas, Proyector, Pantalla, Monitores];
     const equipamiento_2 = [
-      "sillas",
-      "mesas",
-      "proyector",
-      "pantallaProyector",
-      "monitores",
+      "Sillas",
+      "Mesas",
+      "Proyector",
+      "Pantalla",
+      "Monitores",
     ];
     for (let i = 0; i < equipamiento.length; i++) {
+      console.log("entra");
+      console.log(equipamiento[i]);
       if (equipamiento[i] !== undefined) {
         const IdTipoEquipamiento = await espaciosRepository.buscarTipoEquipamiento(
           equipamiento_2[i]
         );
         Cantidad = req.body[equipamiento_2[i]];
+        console.log(req.body[equipamiento_2[i]]);
         agregarEquipo(IdEspacio, IdTipoEquipamiento, Cantidad);
       }
     }

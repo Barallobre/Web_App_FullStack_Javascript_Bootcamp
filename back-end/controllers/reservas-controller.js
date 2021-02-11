@@ -86,8 +86,8 @@ async function getBusqueda(req, res) {
 }
 //-----------------------Búsqueda de equipamiento de los espacios a partir del resultado de la búsqueda--------------------
 async function getBusquedaEquipamiento(req, res) {
-  const { IdEspacio } = req.body;
-
+  const IdEspacio = req.params.IdEspacio;
+  console.log(IdEspacio);
   const schema = Joi.object({
     IdEspacio: Joi.string().required(),
   });

@@ -23,7 +23,8 @@ app.use(fileUpload());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan("combined", { immediate: true, stream: accessLogStream }));
-
+app.use(express.static("public"));
+app.use("/files/espacios", express.static("images"));
 app.use(cors());
 
 // Configuración de las rutas
@@ -81,10 +82,10 @@ app.delete(
   reservasController.deleteReserva
 );
 //busqueda de materiales de un espacio
-app.post("/equipamiento", reservasController.getBusquedaEquipamiento);
+app.get("/equipamiento/:IdEspacio", reservasController.getBusquedaEquipamiento);
 //middleware para las rutas que no existen
-app.use(function (req, res) {
-  res.status(404).send("404 - Not found.");
-});
+// app.use(function (req, res) {
+//   res.status(404).send("404 - Not found.");
+// });
 
 app.listen(SERVER_PORT, () => console.log(`Escuchando ${SERVER_PORT}`));
