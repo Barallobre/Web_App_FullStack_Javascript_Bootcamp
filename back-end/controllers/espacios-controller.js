@@ -169,8 +169,11 @@ async function addEspacio(req, res) {
     const { Sillas, Mesas, Proyector, Pantalla, Monitores } = req.body;
     //recorremos cada tipo de equipamiento y guardamos la cantidad que se nos indica en el formulario
     let Cantidad;
+<<<<<<< HEAD
     console.log("body");
     console.log(req.body);
+=======
+>>>>>>> 93d11ae038f362fd093c356b046cc216fd476c6b
     const equipamiento = [Sillas, Mesas, Proyector, Pantalla, Monitores];
     const equipamiento_2 = [
       "Sillas",
