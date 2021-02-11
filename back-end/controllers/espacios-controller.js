@@ -164,22 +164,16 @@ async function addEspacio(req, res) {
     if (!espacio) {
       throw new Error("Ese espacio no existe");
     }
-    const { sillas, mesas, proyector, pantallaProyector, monitores } = req.body;
+    const { Sillas, Mesas, Proyector, Pantalla, Monitores } = req.body;
     //recorremos cada tipo de equipamiento y guardamos la cantidad que se nos indica en el formulario
     let Cantidad;
-    const equipamiento = [
-      sillas,
-      mesas,
-      proyector,
-      pantallaProyector,
-      monitores,
-    ];
+    const equipamiento = [Sillas, Mesas, Proyector, Pantalla, Monitores];
     const equipamiento_2 = [
-      "sillas",
-      "mesas",
-      "proyector",
-      "pantallaProyector",
-      "monitores",
+      "Sillas",
+      "Mesas",
+      "Proyector",
+      "Pantalla",
+      "Monitores",
     ];
     for (let i = 0; i < equipamiento.length; i++) {
       if (equipamiento[i] !== undefined) {
