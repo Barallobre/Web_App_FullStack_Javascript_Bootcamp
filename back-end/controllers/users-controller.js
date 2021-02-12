@@ -105,7 +105,34 @@ async function login(req, res) {
     res.send({ error: err.message });
   }
 }
+//---------------Recoger datos usuario----------------------------------------
+async function getUser(req, res) {
+  try {
+    const { IdUser } = req.params;
+    if (+IdUser !== +req.auth.id) {
+      throw new Error(`Forbidden.403`);
+    }
+    console.log(IdUser);
+    const schema = Joi.object({
+      IdUser: Joi.number().positive().required(),
+    });
+    await schema.validateAsync({ IdUser });
+    const user = await usersRepository.getUserById(IdUser);
+    if (!user) {
+      throw new Error("Este usuario no existe.");
+    }
+    const usuario = await usersRepository.getUserInfo(IdUser);
 
+    return res.send(usuario);
+  } catch (err) {
+    if (err.nombre === "ValidationError") {
+      err.status = 400;
+    }
+    console.log(err);
+    res.status(err.status || 500);
+    res.send({ error: err });
+  }
+}
 //---------------Actualización de la información del usuario------------------
 async function updateUser(req, res) {
   try {
@@ -120,7 +147,9 @@ async function updateUser(req, res) {
       name,
       lastName,
     } = req.body;
-
+    console.log(newPassword);
+    console.log(repeatNewPassword);
+    console.log(password);
     const schema = Joi.object({
       IdUser: Joi.number().positive().required(),
       email: Joi.string(),
@@ -176,7 +205,11 @@ async function updateUser(req, res) {
     let picture = myImage + ".png";
 
     let passwordHash = undefined;
-    if (newPassword !== undefined) {
+    if (
+      newPassword !== undefined &&
+      newPassword !== " " &&
+      newPassword !== null
+    ) {
       passwordHash = await bcrypt.hash(newPassword, 10);
     }
     await usersRepository.updateUser(
@@ -207,4 +240,5 @@ module.exports = {
   register,
   login,
   updateUser,
+  getUser,
 };

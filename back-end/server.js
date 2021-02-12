@@ -61,6 +61,8 @@ app.delete(
 app.get("/user/:IdUser", validateAuth, reservasController.getReservas);
 //usuario que actualiza su perfil
 app.put("/user/perfil/:IdUser", validateAuth, usersController.updateUser);
+//información del usuario
+app.get("/user/perfil/:IdUser", validateAuth, usersController.getUser);
 //usuario que da de alta una incidencia en un espacio
 app.post(
   "/incidencias/:IdEspacio",
