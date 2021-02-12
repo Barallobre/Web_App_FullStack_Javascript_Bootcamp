@@ -11,7 +11,7 @@ let Jimp = require("jimp");
 const { espaciosRepository } = require("../repositories");
 
 async function agregarEquipo(IdEspacio, IdTipoEquipamiento, Cantidad) {
-  console.log(IdEspacio, IdTipoEquipamiento, Cantidad);
+  console.log("hola");
   await espaciosRepository.insertEquipamiento(
     IdEspacio,
     IdTipoEquipamiento,
@@ -44,7 +44,8 @@ async function getEspacios(req, res) {
 //---------------------------Función para buscar un espacio por Id-------------------------------
 async function getEspacioById(req, res) {
   try {
-    if (req.auth.admin !== true) {
+    console.log(req.auth);
+    if (req.auth.admin === true) {
       throw new Error("No eres admin");
     }
     const IdEspacio = req.params.IdEspacio;
@@ -279,30 +280,29 @@ async function updateEspacio(req, res) {
 
     const espacioUpdated = await espaciosRepository.getEspacioById(IdEspacio);
 
-    const { sillas, mesas, proyector, pantallaProyector, monitores } = req.body;
+    const { Sillas, Mesas, Proyector, Pantalla, Monitores } = req.body;
     let Cantidad;
-    const equipamiento = [
-      sillas,
-      mesas,
-      proyector,
-      pantallaProyector,
-      monitores,
-    ];
+    const equipamiento = [Sillas, Mesas, Proyector, Pantalla, Monitores];
     const equipamiento_2 = [
-      "sillas",
-      "mesas",
-      "proyector",
-      "pantallaProyector",
-      "monitores",
+      "Sillas",
+      "Mesas",
+      "Proyector",
+      "Pantalla",
+      "Monitores",
     ];
     for (let i = 0; i < equipamiento.length; i++) {
       if (equipamiento[i] !== undefined) {
         const IdTipoEquipamiento = await espaciosRepository.buscarTipoEquipamiento(
           equipamiento_2[i]
         );
-        eliminarEquipo(IdEspacio, IdTipoEquipamiento);
+
         Cantidad = req.body[equipamiento_2[i]];
-        agregarEquipo(IdEspacio, IdTipoEquipamiento, Cantidad);
+
+        await espaciosRepository.updateEquipamiento(
+          Cantidad,
+          IdTipoEquipamiento,
+          IdEspacio
+        );
       }
     }
 

@@ -69,6 +69,8 @@ app.post(
   validateAuth,
   incidenciasController.addIncidencia
 );
+//información sobre un espacio
+app.get("/espacio/:IdEspacio", validateAuth, espaciosController.getEspacioById);
 //usuario busca espacios según los criterios del formulario del index
 app.post("/busqueda", reservasController.getBusqueda);
 //usuario confirma la reserva al pagar

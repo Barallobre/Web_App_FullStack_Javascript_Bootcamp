@@ -138,12 +138,15 @@ async function updateEquipamiento(Cantidad, IdTipoEquipamiento, id) {
 }
 async function insertEquipamiento(id, IdTipoEquipamiento, Cantidad) {
   console.log(id, IdTipoEquipamiento, Cantidad);
+  console.log("paso por aqui");
   const pool = await database.getPool();
   const insertQuery = "INSERT INTO EquipamientoEspacio VALUES (?, ?, ?)";
   await pool.query(insertQuery, [id, IdTipoEquipamiento, Cantidad]);
   return true;
 }
 async function deleteEquipamiento(IdEspacio, IdTipoEquipamiento) {
+  console.log("estoy borrando");
+  console.log(IdEspacio, IdTipoEquipamiento);
   const pool = await database.getPool();
   const deleteQuery =
     "DELETE FROM EquipamientoEspacio WHERE IdEspacio = ? and IdTipoEquipamiento = ?";
