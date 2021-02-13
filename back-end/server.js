@@ -7,6 +7,7 @@ const fileUpload = require("express-fileupload");
 const morgan = require("morgan");
 const cors = require("cors");
 const fs = require("fs");
+const path = require("path");
 
 const { SERVER_PORT } = process.env;
 const accessLogStream = fs.createWriteStream("./logs.txt", { flags: "a" });
@@ -23,12 +24,18 @@ app.use(fileUpload());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan("combined", { immediate: true, stream: accessLogStream }));
-app.use(express.static("public"));
-app.use("/files/espacios", express.static("images"));
+
+// app.use(express.static("files"));
+// app.use(express.static("public"));
+app.use("/static", express.static(path.join(__dirname, "files")));
+
+app.use("/files", express.static("files"));
+
 app.use(cors());
 
 // Configuración de las rutas
 
+app.use(express.static("prueba"));
 //registro
 app.post("/register", usersController.register);
 //login
