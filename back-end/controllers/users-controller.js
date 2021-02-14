@@ -48,6 +48,8 @@ async function register(req, res) {
     };
     await sengrid.send(data);*/
 
+    const user = await usersRepository.getUserByEmail(email);
+
     return res.send({ registro: "éxito", IdNuevoUser: id });
   } catch (err) {
     if (err.name === "ValidationError") {
@@ -193,7 +195,7 @@ async function updateUser(req, res) {
 
       try {
         const i = await Jimp.read(imagen.data);
-        i.resize(125, 150);
+        i.resize(150, 150);
         await i.write(__dirname + "/../files/users/" + myImage + ".png");
       } catch {
         const error = new Error("Error procesando imagen. ");
