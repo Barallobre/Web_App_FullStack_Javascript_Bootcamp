@@ -48,8 +48,6 @@ async function register(req, res) {
     };
     await sengrid.send(data);*/
 
-    const user = await usersRepository.getUserByEmail(email);
-
     return res.send({ registro: "éxito", IdNuevoUser: id });
   } catch (err) {
     if (err.name === "ValidationError") {
@@ -188,24 +186,26 @@ async function updateUser(req, res) {
       error.code = 401;
       throw error;
     }
+    let picture = null;
+    if (req.files !== null && req.files.picter !== null) {
+      console.log("paso por aqui");
+      let myImage = "fotoPerfilIdUser" + IdUser;
+      if (req.files && req.files.picture) {
+        let imagen = req.files.picture;
 
-    let myImage = "fotoPerfilIdUser" + IdUser;
-    if (req.files && req.files.picture) {
-      let imagen = req.files.picture;
-
-      try {
-        const i = await Jimp.read(imagen.data);
-        i.resize(150, 150);
-        await i.write(__dirname + "/../files/users/" + myImage + ".png");
-      } catch {
-        const error = new Error("Error procesando imagen. ");
-        error.code = 401;
-        throw error;
+        try {
+          const i = await Jimp.read(imagen.data);
+          i.resize(150, 150);
+          await i.write(__dirname + "/../files/users/" + myImage + ".png");
+        } catch {
+          const error = new Error("Error procesando imagen. ");
+          error.code = 401;
+          throw error;
+        }
       }
+
+      picture = myImage + ".png";
     }
-
-    let picture = myImage + ".png";
-
     let passwordHash = undefined;
     if (
       newPassword !== undefined &&
