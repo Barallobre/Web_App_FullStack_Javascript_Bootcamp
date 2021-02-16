@@ -1,0 +1,54 @@
+.lista-espacios-admin {
+  margin-top: 6rem;
+  background-color: #d9d9d9;
+  width: 90vw;
+
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: center;
+  margin-top: 6rem;
+  border-radius: 20px;
+  text-align: center;
+}
+.lista-espacios-admin li {
+  padding: 1rem;
+  list-style-type: none;
+  font-weight: 700;
+}
+.botones-espacios {
+  display: flex;
+  flex-direction: column;
+}
+.lista-espacios-admin button {
+  height: 40px;
+  border: none;
+  border-radius: 7px;
+  font-size: 17px;
+  width: 70vw;
+  margin: 0 auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-weight: 900;
+}
+
+@media (min-width: 700px) {
+  .botones-espacios {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .lista-espacios-admin button {
+    width: 20vw;
+  }
+}
+@media (min-width: 1000px) {
+  .botones-espacios {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}

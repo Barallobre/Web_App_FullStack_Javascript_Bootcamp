@@ -1,0 +1,80 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #d9d9d9;
+  box-shadow: 2px 2px 5px grey;
+  width: 80vw;
+  height: 300px;
+  border-radius: 20px;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin: auto;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+.form button,
+.form input,
+.form select {
+  width: 75vw;
+  height: 40px;
+  border: none;
+  border-radius: 7px;
+  margin: 10px;
+  padding-left: 15px;
+  font-size: 17px;
+}
+button {
+  cursor: pointer;
+  font-weight: 700;
+}
+p {
+  padding-top: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+@media (min-width: 700px) {
+  .main-formulario p {
+    text-align: right;
+  }
+  .main-formulario {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 4rem;
+    padding-left: 4rem;
+  }
+  .form {
+    width: 40vw;
+  }
+  .form button,
+  .form input,
+  .form select {
+    width: 30vw;
+  }
+}
+hr {
+  width: 95vw;
+  margin: 0 auto;
+}
+@media (min-width: 1600px) {
+  .main-formulario {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    width: 100%;
+  }
+  .form {
+    width: 20vw;
+    margin-right: 10rem;
+  }
+  .form button,
+  .form input,
+  .form select {
+    width: 17vw;
+  }
+}

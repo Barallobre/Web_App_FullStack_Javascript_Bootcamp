@@ -1,0 +1,77 @@
+.formulario-modificar-perfil {
+  display: block;
+  margin: 0 auto;
+}
+.formulario-modificar-perfil form:first-child {
+  margin-top: 5rem;
+}
+.formulario-modificar-perfil select {
+  border: 1px solid black;
+  width: 93vw;
+  margin-left: 10px;
+  padding: 0.5rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+.formulario-modificar-perfil input {
+  border: 1px solid black;
+  width: 93vw;
+  padding: 0.5rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+.formulario-modificar-perfil button,
+.formulario-modificar-perfil textarea {
+  width: 93vw;
+  height: 40px;
+  border: 1px solid black;
+  border-radius: 7px;
+  margin: 10px;
+  padding-left: 15px;
+  font-size: 17px;
+  resize: none;
+}
+
+.foto img {
+  display: none;
+}
+
+@media (min-width: 700px) {
+  .formulario-modificar-perfil select,
+  .formulario-modificar-perfil input,
+  .formulario-modificar-perfil textarea {
+    width: 40vw;
+  }
+  .formulario-modificar-perfil {
+    margin: 0 auto;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    width: 80vw;
+  }
+  .formulario-modificar-perfil button {
+    width: 40vw;
+    height: 40px;
+    border: 1px solid grey;
+    border-radius: 7px;
+    margin: 10px;
+    padding-left: 15px;
+    font-size: 17px;
+  }
+
+  .foto img {
+    display: block;
+    width: 15rem;
+    margin-top: 10rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .foto img {
+    display: block;
+    margin-top: 10rem;
+    margin-right: 10rem;
+  }
+}

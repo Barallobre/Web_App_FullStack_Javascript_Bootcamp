@@ -1,0 +1,19 @@
+.lista-equipamiento {
+  margin-top: 8rem;
+}
+.lista-equipamiento ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  align-content: center;
+  padding-right: 5rem;
+  padding-left: 5rem;
+  text-align: center;
+  padding-bottom: 1rem;
+  font-size: large;
+}
+.lista-equipamiento li {
+  list-style-type: none;
+  font-weight: bold;
+  text-align: center;
+}

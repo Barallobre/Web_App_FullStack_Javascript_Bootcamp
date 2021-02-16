@@ -1,0 +1,76 @@
+.formulario-reporte {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #d9d9d9;
+  width: 80vw;
+  height: 300px;
+  border-radius: 20px;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin: auto;
+  margin-top: 8rem;
+}
+
+.formulario-reporte button,
+.formulario-reporte input,
+.formulario-reporte select,
+.formulario-reporte textarea {
+  width: 75vw;
+  height: 40px;
+  border: none;
+  border-radius: 7px;
+  margin: 10px;
+  padding-left: 15px;
+  font-size: 17px;
+}
+
+.formulario-reporte textarea {
+  resize: none;
+  height: 5rem;
+}
+button {
+  cursor: pointer;
+}
+p {
+  padding-top: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+@media (min-width: 700px) {
+  .formulario-reporte {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 4rem;
+    padding-left: 4rem;
+  }
+  .formulario-reporte {
+    width: 40vw;
+  }
+  .formulario-reporte button,
+  .formulario-reporte textarea,
+  .formulario-reporte select {
+    width: 30vw;
+  }
+}
+
+@media (min-width: 1600px) {
+  .formulario-reporte {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    width: 100%;
+  }
+  .formulario-reporte {
+    width: 20vw;
+  }
+  .formulario-reporte button,
+  .formulario-reporte textarea,
+  .formulario-reporte select {
+    width: 17vw;
+  }
+}

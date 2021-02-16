@@ -1,0 +1,80 @@
+.espacio-modificar {
+  display: block;
+  margin: auto;
+}
+.espacio-modificar form:first-child {
+  margin-top: 5rem;
+}
+.espacio-modificar select {
+  border: 1px solid black;
+  width: 93vw;
+  margin-left: 10px;
+  padding: 0.5rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+.espacio-modificar input {
+  border: 1px solid black;
+  width: 93vw;
+  margin-left: 10px;
+  padding: 0.5rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+.espacio-modificar button {
+  width: 93vw;
+  height: 40px;
+  border: 1px solid black;
+  border-radius: 7px;
+  margin: 10px;
+  padding-left: 15px;
+  font-size: 17px;
+}
+.espacio-modificar {
+  display: block;
+  margin: auto;
+}
+.foto img {
+  display: none;
+}
+
+@media (min-width: 700px) {
+  .espacio-modificar select,
+  .espacio-modificar input {
+    width: 40vw;
+  }
+  .espacio-modificar {
+    margin-top: 2rem;
+  }
+  .espacio-modificar button {
+    width: 40vw;
+    height: 40px;
+    border: 1px solid grey;
+    border-radius: 7px;
+    margin: 10px;
+    padding-left: 15px;
+    font-size: 17px;
+  }
+
+  .espacio-modificar {
+    display: flex;
+    flex-direction: row;
+    width: 90vw;
+  }
+
+  .foto img {
+    display: block;
+    width: 15rem;
+    margin-top: 10rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .foto img {
+    display: block;
+    margin-top: 10rem;
+    margin-right: 10rem;
+  }
+}

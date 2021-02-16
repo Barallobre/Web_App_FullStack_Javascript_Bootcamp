@@ -1,0 +1,43 @@
+.lista-reservas {
+  background-color: #d9d9d9;
+  width: 80vw;
+  font-weight: 700;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: center;
+  margin-top: 6rem;
+  border-radius: 20px;
+  text-align: center;
+}
+.lista-reservas li {
+  padding: 1rem;
+  list-style-type: none;
+}
+
+.botones-lista {
+  display: flex;
+  flex-direction: column;
+}
+
+.botones-lista button {
+  height: 40px;
+  border: none;
+  border-radius: 7px;
+  font-size: 17px;
+  margin: 0 auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 70vw;
+}
+
+@media (min-width: 700px) {
+  .lista-reservas {
+    flex-direction: row;
+  }
+  .botones-lista button {
+    width: 10vw;
+  }
+}

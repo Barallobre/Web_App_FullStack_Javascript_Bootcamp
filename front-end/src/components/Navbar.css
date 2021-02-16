@@ -1,0 +1,105 @@
+.navbar {
+  background-color: #999999;
+  opacity: 0.8;
+  display: flex;
+  position: fixed;
+  left: 0;
+  justify-content: space-between;
+  width: 100%;
+  top: 0;
+  height: 4rem;
+  box-shadow: 1px 1px 6px black;
+}
+.name-logo {
+  display: flex;
+  padding: 1rem;
+  font-size: 0.5rem;
+  color: white;
+  flex-direction: row;
+}
+.name-logo h1 {
+  margin-left: 1rem;
+  margin-top: 0.25rem;
+  display: none;
+}
+.menu-icon {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 1rem;
+  align-items: center;
+}
+.menu-icon li {
+  color: white;
+  background-color: rgba(82, 81, 81, 0.534);
+  border-radius: 10px;
+  padding: 0.75rem;
+  list-style-type: none;
+  margin: 0.5rem;
+  font-weight: 400;
+  opacity: 1;
+}
+
+.menu-icon2 ul {
+  display: flex;
+  flex-direction: row;
+  margin-right: 1rem;
+  align-items: center;
+}
+.menu-icon2 li {
+  color: white;
+  background-color: rgba(82, 81, 81, 0.534);
+  border-radius: 10px;
+  padding: 0.5rem;
+  list-style-type: none;
+  margin: 0.5rem;
+  font-size: 12px;
+  margin-right: 0.7rem;
+  text-align: center;
+}
+
+.menu-user img {
+  width: 2.5rem;
+  border-radius: 50px;
+  margin-top: 0.5rem;
+  margin-right: 0.4rem;
+}
+.nombre-user {
+  display: none;
+}
+.apellidos-user {
+  display: none;
+}
+.menu-icon2 li:hover {
+  background-color: grey;
+}
+@media (min-width: 720px) {
+  .name-logo h1 {
+    display: block;
+  }
+  .nombre-user {
+    display: block;
+    margin-right: 0.5rem;
+  }
+  .apellidos-user {
+    display: none;
+  }
+  .menu-icon2 li {
+    color: white;
+    background: rgba(82, 81, 81, 0.534);
+    border-radius: 10px;
+    padding: 0.75rem;
+    list-style-type: none;
+    margin: 0.5rem;
+    font-weight: 400;
+    opacity: 1;
+    text-align: center;
+    font-size: 1rem;
+  }
+}
+@media (min-width: 1000px) {
+  .apellidos-user {
+    display: inline-block;
+    margin-right: 0.5rem;
+    margin-left: 0;
+  }
+}

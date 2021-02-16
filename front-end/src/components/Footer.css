@@ -1,0 +1,40 @@
+footer {
+  background-color: black;
+  color: white;
+  margin-top: 3rem;
+
+  padding-bottom: 4rem;
+  text-align: center;
+  padding-top: 1rem;
+  opacity: 0.9;
+  bottom: 0;
+}
+.rrss {
+  margin-top: 1rem;
+}
+.rrss img {
+  margin-top: 2rem;
+  width: 3rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 700px) {
+  footer {
+    margin-bottom: 0;
+    flex-direction: row;
+  }
+  .footer p {
+    margin-top: 1.5rem;
+  }
+  .logo {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .footer img {
+    margin-left: 2rem;
+    margin-top: 1rem;
+  }
+  .footer p {
+    padding-top: 0;
+  }
+}
