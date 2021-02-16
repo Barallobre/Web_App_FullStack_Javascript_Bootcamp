@@ -6,12 +6,14 @@ create table TipoEspacio(
     NombreTipo varchar(20) not null,
     primary key (IdTipoEspacio)
 );
+insert into TipoEspacio(NombreTipo) values ('diáfano'),('pet-friendly'),('sala de juntas'),('eco-friendly');
 
 create table TipoIncidencia(
     IdTipoIncidencia smallint not null auto_increment,
     NombreTipo varchar(20) not null,
     primary key (IdTipoIncidencia)
 );
+insert into TipoIncidencia(NombreTipo) values('Fallo eléctrico'),('Goteras'),('Equipo deteriorado'),('Suciedad'),('Otras quejas');
 
 create table TipoEquipamiento(
     IdTipoEquipamiento smallint not null auto_increment,
@@ -19,6 +21,7 @@ create table TipoEquipamiento(
     primary key (IdTipoEquipamiento)
 );
 
+insert into TipoEquipamiento(TipoEquipamiento) values  ("Sillas"),("Mesas"),("Proyector"),("Pantalla"),("Monitores");
 create table Usuario(
     IdUsuario int not null auto_increment,
     Nombre varchar(50),
@@ -50,7 +53,6 @@ create table Incidencia(
     idEspacio int,
     Descripcion varchar(100),
     FechaAlta date,
-    FechaBaja date,
     primary key (IdIncidencia),
     foreign key (idTipoIncidencia) references TipoIncidencia (idTipoIncidencia),
     foreign key (idEspacio) references Espacio(IdEspacio)
@@ -76,8 +78,14 @@ create table Reserva(
     foreign key (idUsuario) references Usuario(idUsuario),
     foreign key (idEspacio) references Espacio(idEspacio)
 );
-select * from Reserva; 
-select * from Espacio;
+
+
 select * from Usuario;
-select * from Incidencia;
+select * from Espacio;
 select * from EquipamientoEspacio;
+select*from tipoEspacio;
+select* from tipoIncidencia;
+select * from tipoEquipamiento;
+select*from Reserva;
+select * from Incidencia;
+
