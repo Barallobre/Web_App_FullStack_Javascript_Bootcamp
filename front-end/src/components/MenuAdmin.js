@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 function Menu2() {
   return (
     <ul>
+      <div className="admin-navbar">Admin</div>
       <Link to="/admin" style={{ color: "inherit", textDecoration: "inherit" }}>
         <li>Espacios</li>
       </Link>

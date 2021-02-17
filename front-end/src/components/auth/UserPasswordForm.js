@@ -5,6 +5,8 @@ export const UserPasswordForm = ({
   email,
   setEmail,
   password,
+  repeatedPassword,
+  setRepeatedPassword,
   setPassword,
   errorMessage = "",
 }) => {
@@ -26,6 +28,12 @@ export const UserPasswordForm = ({
           id="pasword"
           value={password}
           setValue={setPassword}
+          type="password"
+        ></InputElement>
+        <InputElement
+          id="repeatedPasword"
+          value={repeatedPassword}
+          setValue={setRepeatedPassword}
           type="password"
         ></InputElement>
         <div> {errorMessage}</div>

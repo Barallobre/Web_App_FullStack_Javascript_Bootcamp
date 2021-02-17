@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Redirect, useLocation } from "react-router-dom";
+import { Redirect, useHistory, useLocation } from "react-router-dom";
 import { AuthContext } from "../components/providers/AuthProvider";
+import swal from "sweetalert";
 import "./ConfirmacionReserva.css";
 const Confirmar = () => {
   const [auth] = useContext(AuthContext);
@@ -14,24 +15,29 @@ const Confirmar = () => {
   const [fechaFin, setFechaFin] = useState("");
 
   const [redirect, setRedirect] = useState(false);
-
+  const history = useHistory();
   const token = auth;
 
   const confirmar = async (e) => {
     e.preventDefault();
-    await fetch(`http://localhost:8081/busqueda/${idEspacio}/reservar`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: token,
-      },
-      body: JSON.stringify({
-        fechaInicio,
-        fechaFin,
-      }),
-    });
-    setRedirect(true);
-    alert("Reserva realizada con éxito");
+    if (token !== "") {
+      await fetch(`http://localhost:8081/busqueda/${idEspacio}/reservar`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: token,
+        },
+        body: JSON.stringify({
+          fechaInicio,
+          fechaFin,
+        }),
+      });
+      setRedirect(true);
+      swal("Reserva realizada con éxito", "", "success");
+    } else {
+      swal("Debe estar registrado para realizar una reserva", "", "warning");
+      history.push("/");
+    }
   };
 
   let fecha1 = new Date(fechaInicio);

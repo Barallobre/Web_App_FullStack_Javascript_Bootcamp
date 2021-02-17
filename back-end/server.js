@@ -95,8 +95,8 @@ app.delete(
 //busqueda de materiales de un espacio
 app.get("/equipamiento/:IdEspacio", reservasController.getBusquedaEquipamiento);
 //middleware para las rutas que no existen
-// app.use(function (req, res) {
-//   res.status(404).send("404 - Not found.");
-// });
+app.use(function (req, res) {
+  res.status(404).send("404 - Not found.");
+});
 
 app.listen(SERVER_PORT, () => console.log(`Escuchando ${SERVER_PORT}`));

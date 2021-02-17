@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import { UserPasswordForm } from "./UserPasswordForm";
+import { UserPasswordFormLogin } from "./UserPasswordFormLogin";
 
 export const LoginForm = () => {
   const [, setAccessToken] = useLocalStorage("auth", "");
@@ -37,7 +37,7 @@ export const LoginForm = () => {
   return existe ? (
     <div>
       <h2 style={{ marginTop: "7rem", textAlign: "center" }}>Inicia sesión</h2>
-      <UserPasswordForm
+      <UserPasswordFormLogin
         onSubmit={login}
         email={email}
         setEmail={setEmail}

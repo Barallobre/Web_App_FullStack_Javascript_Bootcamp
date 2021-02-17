@@ -105,18 +105,24 @@ function ModificarEspacio({ match }) {
   return (
     <div onSubmit={update} className="espacio-modificar">
       <form>
+        <div>Nombre</div>
         <input
           id="nombre"
           type="text"
-          placeholder="Nombre"
+          value={nombre}
           onChange={(e) => setNombre(e.target.value)}
         />
-        <input
-          id="localidad"
-          type="text"
-          placeholder="Localidad"
-          onChange={(e) => setLocalidad(e.target.value)}
-        />
+        <div>Localización</div>
+        <select onChange={(e) => setLocalidad(e.target.value)}>
+          <option value=""></option>
+          <option value="A Coruña">A Coruña</option>
+          <option value="Lugo">Lugo</option>
+          <option value="Ourense">Ourense</option>
+          <option value="Pontevedra">Pontevedra</option>
+          <option value="Vigo">Vigo</option>
+          <option value="Ferrol">Ferrol</option>
+        </select>
+        <div>Tipo de espacio</div>
         <select onChange={(e) => setTipoEspacio(e.target.value)}>
           <option value="0"></option>
           <option value="1">Diáfano</option>
@@ -124,58 +130,62 @@ function ModificarEspacio({ match }) {
           <option value="3">Sala de juntas</option>
           <option value="4">Eco-friendly</option>
         </select>
+        <div>Fecha inicio disponibilidad</div>
         <input
           id="fechaInicioDisp"
           type="date"
-          placeholder="Fecha de inicio de disponibilidad"
+          value={fechaInicioDisp}
           onChange={(e) => setFechaInicioDisp(e.target.value)}
         />
+        <div>Fecha fin disponibilidad</div>
         <input
           id="fechaFinDisp"
           type="date"
-          placeholder="Fecha de fin de disponibilidad"
+          value={fechaFinDisp}
           onChange={(e) => setFechaFinDisp(e.target.value)}
         />
+        <div>Coste diario</div>
         <input
           id="costeDia"
           type="text"
-          placeholder="Coste Diario"
+          value={costeDia}
           onChange={(e) => setCosteDia(e.target.value)}
         />
-        <input
-          id="picture"
-          type="file"
-          placeholder="Imagen"
-          onChange={onFileChange}
-        />
+        <div>Imagen</div>
+        <input id="picture" type="file" onChange={onFileChange} />
+        <div>Sillas</div>
         <input
           id="sillas"
           type="text"
-          placeholder="Sillas"
+          value={Sillas}
           onChange={(e) => setSillas(e.target.value)}
         />
+        <div>Mesas</div>
         <input
           id="mesas"
           type="text"
-          placeholder="Mesas"
+          value={Mesas}
           onChange={(e) => setMesas(e.target.value)}
         />
+        <div>Proyectores</div>
         <input
           id="proyector"
           type="text"
-          placeholder="Proyectores"
+          value={Proyector}
           onChange={(e) => setProyector(e.target.value)}
         />
+        <div>Pantalla de proyector</div>
         <input
           id="pantallaProyector"
           type="text"
-          placeholder="Pantallas para proyector"
+          value={Pantalla}
           onChange={(e) => setPantalla(e.target.value)}
         />
+        <div>Monitores disponibles</div>
         <input
           id="monitores"
           type="text"
-          placeholder="Monitores"
+          value={Monitores}
           onChange={(e) => setMonitores(e.target.value)}
         />
         <button>Enviar</button>

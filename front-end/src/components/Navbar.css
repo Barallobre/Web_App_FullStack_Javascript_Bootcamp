@@ -72,6 +72,12 @@
 .menu-icon2 li:hover {
   background-color: grey;
 }
+.admin-navbar {
+  font-weight: 900;
+  vertical-align: top;
+
+  font-size: 10px;
+}
 @media (min-width: 720px) {
   .name-logo h1 {
     display: block;
@@ -94,6 +100,12 @@
     opacity: 1;
     text-align: center;
     font-size: 1rem;
+  }
+  .admin-navbar {
+    font-weight: 900;
+    vertical-align: top;
+    margin-right: 1rem;
+    font-size: 20px;
   }
 }
 @media (min-width: 1000px) {

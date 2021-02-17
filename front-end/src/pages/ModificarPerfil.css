@@ -37,7 +37,9 @@
 .foto img {
   display: none;
 }
-
+.formulario-modificar-perfil div {
+  margin-left: 10px;
+}
 @media (min-width: 700px) {
   .formulario-modificar-perfil select,
   .formulario-modificar-perfil input,
@@ -52,11 +54,12 @@
     width: 80vw;
   }
   .formulario-modificar-perfil button {
-    width: 40vw;
+    width: 20vw;
     height: 40px;
     border: 1px solid grey;
     border-radius: 7px;
     margin: 10px;
+    margin-left: 10vw;
     padding-left: 15px;
     font-size: 17px;
   }

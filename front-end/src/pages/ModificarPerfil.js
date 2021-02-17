@@ -73,54 +73,60 @@ function ModificarPerfil() {
   return (
     <div onSubmit={update} className="formulario-modificar-perfil">
       <form autoComplete="off">
-        <input
-          id="picture"
-          type="file"
-          placeholder="Imagen"
-          onChange={onFileChange}
-        />
+        <div>Foto</div>
+
+        <input id="picture" type="file" onChange={onFileChange} />
+        <div>Nombre</div>
+
         <input
           id="name"
           type="text"
-          placeholder="Nombre"
+          value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <input
-          id="email"
-          type="email"
-          placeholder="email"
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <textarea
-          id="bio"
-          placeholder="bio"
-          onChange={(e) => setBio(e.target.value)}
-        />
-        <input
-          id="password"
-          type="password"
-          placeholder="contraseña"
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <input
-          id="newpassword"
-          type="password"
-          placeholder="contraseña nueva"
-          onChange={(e) => setNewPassword(e.target.value)}
-        />
-        <input
-          id="repeatnewpassword"
-          type="password"
-          placeholder="repita la contraseña nueva"
-          onChange={(e) => setRepeatNewPassword(e.target.value)}
-        />
+        <div>Apellidos</div>
+
         <input
           id="lastname"
           type="text"
-          placeholder="Apellidos"
+          value={lastName}
           onChange={(e) => setLastName(e.target.value)}
+        />
+        <div>Email</div>
+        <input
+          id="email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <div>Bio</div>
+        <textarea
+          id="bio"
+          value={bio === "null" ? "" : bio}
+          onChange={(e) => setBio(e.target.value)}
+        />
+        <div>Contraseña</div>
+
+        <input
+          id="password"
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <div>Nueva contraseña</div>
+
+        <input
+          id="newpassword"
+          type="password"
+          onChange={(e) => setNewPassword(e.target.value)}
+        />
+        <div>Repetir nueva contraseña</div>
+
+        <input
+          id="repeatnewpassword"
+          type="password"
+          onChange={(e) => setRepeatNewPassword(e.target.value)}
         />
         <button>Enviar</button>
       </form>

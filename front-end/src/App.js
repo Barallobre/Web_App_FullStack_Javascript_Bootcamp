@@ -50,7 +50,12 @@ function App() {
               <Route path="/admin/nuevo" exact component={EspacioNuevo} />
               <Route path="/reservas" exact component={Reservas} />
               <Route path="/confirmar" component={ConfirmarReserva} />
-              <Route path="/" render={() => <h1>404 Not Found</h1>} />
+              <Route
+                path="/"
+                render={() => (
+                  <h1 style={{ marginTop: "8rem" }}>404 Not Found</h1>
+                )}
+              />
             </Switch>
           </main>
           <Footer />

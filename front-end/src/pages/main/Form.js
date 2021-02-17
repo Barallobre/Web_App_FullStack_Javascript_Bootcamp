@@ -33,13 +33,7 @@ const Form = () => {
       fecha2: fechaFin,
     });
   };
-  let fecha = new Date();
-  let dia = fecha.getDate();
-  let year = fecha.getFullYear();
-  let mes = fecha.getMonth() + 1;
 
-  const diaActual = `"${year}-0${mes}-${dia}"`;
-  console.log(typeof diaActual);
   return (
     <>
       <section className="main-formulario">
@@ -51,24 +45,29 @@ const Form = () => {
         <div className="form" onSubmit={submitForm}>
           <form>
             <select onChange={(e) => setTipoEspacio(e.target.value)}>
-              <option value=""></option>
+              <option value="" style={{ fontSize: "10px" }}>
+                Tipo de espacio
+              </option>
               <option value="1">Diáfano</option>
               <option value="2">Pet-friendly</option>
               <option value="3">Sala de juntas</option>
               <option value="4">Eco-friendly</option>
             </select>
             <select onChange={(e) => setLocalidad(e.target.value)}>
-              <option value=""></option>
+              <option value="" style={{ fontSize: "10px" }}>
+                Localización
+              </option>
               <option value="A Coruña">A Coruña</option>
               <option value="Lugo">Lugo</option>
               <option value="Ourense">Ourense</option>
               <option value="Pontevedra">Pontevedra</option>
+              <option value="Vigo">Vigo</option>
+              <option value="Ferrol">Ferrol</option>
             </select>
             <input
               id="fecha-inicio"
               type="date"
               placeholder="fecha inicio"
-              min={diaActual}
               onChange={(e) => setFechaInicio(e.target.value)}
               required
             />
