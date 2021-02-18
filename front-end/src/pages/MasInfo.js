@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./MasInfo.css";
-
+import { v4 as uuidv4 } from "uuid";
 function MasInfo({ match }) {
   const [equipamiento, setEquipamiento] = useState([]);
 
@@ -24,11 +24,12 @@ function MasInfo({ match }) {
 
     setEquipamiento(respuesta);
   };
-  return equipamiento.map((x) => (
+
+  return equipamiento.map((equipo, index) => (
     <div className="lista-equipamiento">
-      <ul key={x.TipoEquipamiento}>
-        <li>{x.TipoEquipamiento}</li>
-        <li>{x.Cantidad}</li>
+      <ul key={index}>
+        <li>{equipo.TipoEquipamiento}</li>
+        <li>{equipo.Cantidad}</li>
       </ul>
       <hr />
     </div>

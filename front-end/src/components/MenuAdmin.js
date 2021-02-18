@@ -18,7 +18,6 @@ function Menu2() {
         style={{
           color: "inherit",
           textDecoration: "inherit",
-          border: "1px solid black",
         }}
       >
         <li>Espacios</li>
@@ -29,7 +28,6 @@ function Menu2() {
         style={{
           color: "inherit",
           textDecoration: "inherit",
-          border: "1px solid black",
         }}
       >
         <li>Espacio nuevo</li>

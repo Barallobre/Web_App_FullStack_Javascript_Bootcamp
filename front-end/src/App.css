@@ -25,4 +25,5 @@ div.content main {
 
 button:hover {
   background-color: grey;
+  color: white;
 }
