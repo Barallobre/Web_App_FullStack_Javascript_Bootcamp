@@ -10,7 +10,7 @@ function AdministrarEspacios() {
   const history = useHistory();
 
   const token = auth;
-
+  console.log(respuesta);
   useEffect(() => {
     espacios();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -19,6 +19,25 @@ function AdministrarEspacios() {
     history.push(`/admin/${id}/update`);
   }
 
+  function handleClickEliminar(espacio) {
+    console.log(espacio);
+
+    removeEspacio(espacio);
+    eliminar(espacio);
+  }
+
+  function removeEspacio(espacio) {
+    setRespuesta(respuesta.filter((res) => res.IdEspacio !== espacio));
+  }
+  async function eliminar(id) {
+    await fetch(`http://localhost:8081/admin/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: token,
+      },
+    });
+  }
   async function consultar(id) {
     const res = await fetch(`http://localhost:8081/admin/${id}/incidencias`, {
       method: "GET",
@@ -58,6 +77,9 @@ function AdministrarEspacios() {
         <button onClick={(e) => modificar(espacio.IdEspacio)}>Modificar</button>
         <button onClick={(e) => consultar(espacio.IdEspacio)}>
           Incidencias
+        </button>
+        <button onClick={(e) => handleClickEliminar(espacio.IdEspacio)}>
+          Eliminar
         </button>
       </div>
     </ul>

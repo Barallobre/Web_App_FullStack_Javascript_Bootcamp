@@ -81,7 +81,7 @@ function ModificarPerfil() {
         <input
           id="name"
           type="text"
-          value={name}
+          value={name === "null" ? "" : name}
           onChange={(e) => setName(e.target.value)}
         />
         <div>Apellidos</div>
@@ -89,7 +89,7 @@ function ModificarPerfil() {
         <input
           id="lastname"
           type="text"
-          value={lastName}
+          value={lastName === "null" ? "" : lastName}
           onChange={(e) => setLastName(e.target.value)}
         />
         <div>Email</div>
