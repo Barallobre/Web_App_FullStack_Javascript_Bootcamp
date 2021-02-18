@@ -22,18 +22,21 @@ export const UserPasswordForm = ({
           id="email"
           value={email}
           setValue={setEmail}
+          placeholder="email"
           type="email"
         ></InputElement>
         <InputElement
           id="pasword"
           value={password}
           setValue={setPassword}
+          placeholder="contraseña"
           type="password"
         ></InputElement>
         <InputElement
           id="repeatedPasword"
           value={repeatedPassword}
           setValue={setRepeatedPassword}
+          placeholder="repita la contraseña"
           type="password"
         ></InputElement>
         <div> {errorMessage}</div>
@@ -48,13 +51,14 @@ export const UserPasswordForm = ({
   );
 };
 
-const InputElement = ({ id, value, setValue, type, children }) => {
+const InputElement = ({ id, value, setValue, type, placeholder, children }) => {
   return (
     <div>
       <input
         value={value}
         id={id}
         type={type}
+        placeholder={placeholder}
         onChange={(e) => setValue(e.target.value)}
         required
       />

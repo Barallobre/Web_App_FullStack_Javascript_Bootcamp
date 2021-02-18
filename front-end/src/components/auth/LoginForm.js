@@ -53,7 +53,6 @@ export const LoginForm = () => {
               marginTop: "3rem",
               textAlign: "center",
               fontWeight: "bold",
-
               color: "red",
             }}
           >
