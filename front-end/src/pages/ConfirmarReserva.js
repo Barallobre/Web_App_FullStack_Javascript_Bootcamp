@@ -44,7 +44,7 @@ const Confirmar = () => {
   let fecha2 = new Date(fechaFin);
 
   let resta = fecha2.getTime() - fecha1.getTime();
-  const dias = Math.round(resta / (1000 * 60 * 60 * 24));
+  const dias = Math.round(resta / (1000 * 60 * 60 * 24)) + 1;
 
   useEffect(() => {
     setIdEspacio(location.state["id"]);
