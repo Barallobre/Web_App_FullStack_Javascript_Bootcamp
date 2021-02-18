@@ -45,7 +45,9 @@ function IncidenciasUser() {
         <div onSubmit={reportar}>
           <form>
             <select onChange={(e) => setIdTipoIncidencia(e.target.value)}>
-              <option value="0"></option>
+              <option value="" style={{ fontSize: "10px" }}>
+                Tipo de incidencia
+              </option>
               <option value="1">Fallo eléctrico</option>
               <option value="2">Goteras</option>
               <option value="3">Equipo deteriorado</option>
