@@ -43,34 +43,44 @@ const ResultadoBusqueda = () => {
   if (!datosBusqueda) {
     return null;
   }
-  return datosBusqueda.map((x) => (
-    <ul className="lista-busqueda" key={x.IdEspacio}>
-      <div className="lista-busqueda2">
-        <li>{x.Nombre}</li>
-        <li>{x.Localidad}</li>
-        <li>{x.CosteDiario}€</li>
-        <img
-          src={`http://localhost:8081/files/espacios/fotoEspacio${x.Nombre.replaceAll(
-            /\s/g,
-            ""
-          )}.png`}
-          alt={`fotoEspacio${x.Nombre.replaceAll(/\s/g, "")}.png`}
-        />
-      </div>
-      <div className="buttons">
-        <button
-          onClick={(e) =>
-            confirmar(e, x.IdEspacio, x.Nombre, x.Localidad, x.CosteDiario)
-          }
-        >
-          Reservar
-        </button>
+  if (datosBusqueda.length !== 0) {
+    return datosBusqueda.map((x) => (
+      <ul className="lista-busqueda" key={x.IdEspacio}>
+        <div className="lista-busqueda2">
+          <li>{x.Nombre}</li>
+          <li>{x.Localidad}</li>
+          <li>{x.CosteDiario}€</li>
+          <img
+            src={`http://localhost:8081/files/espacios/fotoEspacio${x.Nombre.replaceAll(
+              /\s/g,
+              ""
+            )}.png`}
+            alt={`fotoEspacio${x.Nombre.replaceAll(/\s/g, "")}.png`}
+          />
+        </div>
+        <div className="buttons">
+          <button
+            onClick={(e) =>
+              confirmar(e, x.IdEspacio, x.Nombre, x.Localidad, x.CosteDiario)
+            }
+          >
+            Reservar
+          </button>
 
-        <button className="masInfo" onClick={(e) => masInfo(x.IdEspacio)}>
-          Equipo disponible
-        </button>
-      </div>
-    </ul>
-  ));
+          <button className="masInfo" onClick={(e) => masInfo(x.IdEspacio)}>
+            Equipo disponible
+          </button>
+        </div>
+      </ul>
+    ));
+  } else if (datosBusqueda.length === 0) {
+    return (
+      <h1
+        style={{ marginTop: "10rem", textAlign: "center", fontSize: "1.5rem" }}
+      >
+        No existen resultados con los parámetros indicados.
+      </h1>
+    );
+  }
 };
 export default ResultadoBusqueda;
