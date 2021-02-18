@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./EspacioNuevo.css";
+import { useHistory } from "react-router-dom";
 import { AuthContext } from "../components/providers/AuthProvider";
 import "./ModificarEspacio.css";
 
@@ -21,6 +22,7 @@ function ModificarEspacio({ match }) {
   const [Monitores, setMonitores] = useState("");
 
   const token = auth;
+  const history = useHistory();
   const idEspacio = match.params.id;
   let IdEspacio = idEspacio.toString();
 
@@ -95,6 +97,8 @@ function ModificarEspacio({ match }) {
       },
       body: data,
     });
+
+    history.push("/");
   };
 
   const onFileChange = (event) => {

@@ -29,7 +29,7 @@
   border: 1px solid black;
   border-radius: 7px;
   margin: 10px;
-  padding-left: 15px;
+
   font-size: 17px;
 }
 .espacio-modificar {
@@ -39,7 +39,9 @@
 .foto img {
   display: none;
 }
-
+.espacio-modificar div {
+  margin-left: 10px;
+}
 @media (min-width: 700px) {
   .espacio-modificar select,
   .espacio-modificar input {
@@ -55,12 +57,10 @@
     border-radius: 7px;
     margin: 10px;
     margin-left: 10vw;
-    padding-left: 15px;
+
     font-size: 17px;
   }
-  .espacio-modificar div {
-    margin-left: 10px;
-  }
+
   .espacio-modificar {
     display: flex;
     flex-direction: row;
