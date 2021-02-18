@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import ImagenUser from "./ImagenUser";
 import NombreUser from "./NombreUser";
 import ApellidosUser from "./ApellidosUser";
+import { useHistory } from "react-router-dom";
+import { AuthContext } from "./providers/AuthProvider";
 function Menu1({ id }) {
+  const [, setAuth] = useContext(AuthContext);
+  const history = useHistory();
+  function cerrarSesion(e) {
+    history.push("/");
+    setAuth("");
+  }
+
   return (
     <ul className="menu-user">
       <NombreUser id={id} />
@@ -22,12 +31,10 @@ function Menu1({ id }) {
       >
         <li>Perfil</li>
       </Link>
-      <Link
-        to="/LogOut"
-        style={{ color: "inherit", textDecoration: "inherit" }}
-      >
-        <li>Cerrar sesión</li>
-      </Link>
+
+      <button className="boton-cierre" onClick={(e) => cerrarSesion(e)}>
+        <li> Cerrar sesión </li>
+      </button>
     </ul>
   );
 }
