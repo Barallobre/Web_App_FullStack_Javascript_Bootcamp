@@ -25,6 +25,7 @@ export const LoginForm = () => {
     if (res.status === 500) {
       setExiste(false);
     }
+
     if (res.status !== 200) {
       setAuth("");
       setErrorMessage(errorMessage);
@@ -34,7 +35,7 @@ export const LoginForm = () => {
       setAuth(respuesta.token);
     }
   };
-  return existe ? (
+  return (
     <div>
       <h2 style={{ marginTop: "7rem", textAlign: "center" }}>Inicia sesión</h2>
       <UserPasswordFormLogin
@@ -45,18 +46,21 @@ export const LoginForm = () => {
         setPassword={setPassword}
         errorMessage={errorMessage}
       />
-    </div>
-  ) : (
-    <h3
-      style={{
-        marginTop: "15rem",
-        textAlign: "center",
-        fontWeight: "bold",
+      <div>
+        {!existe ? (
+          <h3
+            style={{
+              marginTop: "3rem",
+              textAlign: "center",
+              fontWeight: "bold",
 
-        color: "red",
-      }}
-    >
-      Usuario no registrado o contraseña incorrecta.
-    </h3>
+              color: "red",
+            }}
+          >
+            Usuario no registrado o contraseña incorrecta.
+          </h3>
+        ) : null}
+      </div>
+    </div>
   );
 };
