@@ -93,6 +93,7 @@ const Form = () => {
             <input
               id="fecha-fin"
               type="date"
+              min={fechaInicio}
               placeholder="fecha fin"
               onChange={(e) => setFechaFin(e.target.value)}
               required
