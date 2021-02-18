@@ -34,6 +34,24 @@ const Form = () => {
     });
   };
 
+  //Fecha del día actual
+  const dia = new Date();
+  let mes;
+  const mes1 = dia.getMonth() + 1;
+  if (mes1 < 10) {
+    mes = `0${mes1}`;
+  } else {
+    mes = mes1;
+  }
+  let diaMes;
+  const diaMes1 = dia.getDate();
+  if (diaMes1 < 10) {
+    diaMes = `0${diaMes1}`;
+  } else {
+    diaMes = diaMes1;
+  }
+  const hoy = `${dia.getFullYear()}-${mes}-${diaMes}`;
+
   return (
     <>
       <section className="main-formulario">
@@ -67,6 +85,7 @@ const Form = () => {
             <input
               id="fecha-inicio"
               type="date"
+              min={hoy}
               placeholder="fecha inicio"
               onChange={(e) => setFechaInicio(e.target.value)}
               required
@@ -74,7 +93,6 @@ const Form = () => {
             <input
               id="fecha-fin"
               type="date"
-              // min="2021-02-01"
               placeholder="fecha fin"
               onChange={(e) => setFechaFin(e.target.value)}
               required
