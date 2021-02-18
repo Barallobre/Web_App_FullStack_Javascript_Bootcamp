@@ -53,7 +53,15 @@ function App() {
               <Route
                 path="/"
                 render={() => (
-                  <h1 style={{ marginTop: "8rem" }}>404 Not Found</h1>
+                  <h1
+                    style={{
+                      marginTop: "8rem",
+                      textAlign: "center",
+                      fontSize: "1.5rem",
+                    }}
+                  >
+                    La página en la que intenta entrar no existe.
+                  </h1>
                 )}
               />
             </Switch>
